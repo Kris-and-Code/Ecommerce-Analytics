@@ -2,8 +2,17 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List, Dict, Any
 from textblob import TextBlob
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # You can restrict this to ["http://localhost:5173"]
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Mock sales data
 data_sales = [
